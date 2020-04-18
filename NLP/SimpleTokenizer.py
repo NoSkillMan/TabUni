@@ -7,7 +7,7 @@ import re
 class SimpleTokenizer():
     istr = "input string"
     marks = [';', '.', '!', ':', '،', '«',
-             '»', '(', ')', '#', '$', '^', '*', '-']
+             '»', '(', ')', '#', '$', '^', '*', '-', '؛', '?', '؟']
 
     def __init__(self, istr):
         self.istr = istr.strip()

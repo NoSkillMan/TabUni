@@ -11,7 +11,7 @@ if __name__ == "__main__":
     img_path = os.path.join(pwd, "input.jpg")
     img = cv2.imread(img_path)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    snp_img = random_noise(img, mode='s&p')
+    snp_img = (random_noise(img, mode='s&p') * 255).astype(np.uint8)
     new_img = cv2.medianBlur(snp_img, 3)
 
     fig = plt.figure()

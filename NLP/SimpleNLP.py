@@ -47,21 +47,21 @@ class SimpleCorpusProcessor:
                     self.tf_idf[doc][word] = 0.0
 
     def TermFrequencies(self):
-        # dataframe = pd.DataFrame(data=self.tf, columns=self.tf.keys(),index=self.wt.keys())
         dataframe = pd.DataFrame(data=self.tf)
         dataframe.fillna(value=0.0, inplace=True)
+        dataframe.sort_index(inplace=True)
         return dataframe
 
     def DocumentFrequencies(self):
         dataframe = pd.DataFrame().from_dict(self.df, orient="index")
         dataframe.fillna(value=0, inplace=True)
         dataframe.columns = ['Frequency']
-        dataframe.sort_values('Frequency', inplace=True, ascending=False)
+        dataframe.sort_index(inplace=True)
         return dataframe
-        # return self.df
 
     def TFIDF(self):
         dataframe = pd.DataFrame(data=self.tf_idf)
+        dataframe.sort_index(inplace=True)
         return dataframe
 
 
