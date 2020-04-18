@@ -12,11 +12,11 @@ class SimpleCorpusProcessor:
     df = 'Document Frequencies'
     tf_idf = 'Type Frequencies / Document Frequencies'
 
-    def __init__(self, corpus,*args,**kwargs):
+    def __init__(self, corpus, *args, **kwargs):
         self.corpus = corpus
-        self._CorpusProcess(*args,**kwargs)
+        self._CorpusProcess(*args, **kwargs)
 
-    def _CorpusProcess(self,*args,**kwargs):
+    def _CorpusProcess(self, *args, **kwargs):
         self.wt = set()
         self.tf = dict()
         self.df = dict()
@@ -27,7 +27,7 @@ class SimpleCorpusProcessor:
             self.tf_idf[doc] = {}
             text = self.corpus.get(doc)
             obj = SimpleTokenizer(text)
-            tokenized_text = obj.tokenize(*args,**kwargs)
+            tokenized_text = obj.tokenize(*args, **kwargs)
             for word in tokenized_text:
                 if tmp_doc.get(word):
                     tmp_doc[word] += 1
@@ -55,12 +55,15 @@ class SimpleCorpusProcessor:
     def DocumentFrequencies(self):
         dataframe = pd.DataFrame().from_dict(self.df, orient="index")
         dataframe.fillna(value=0, inplace=True)
+        dataframe.columns = ['Frequency']
+        dataframe.sort_values('Frequency', inplace=True, ascending=False)
         return dataframe
         # return self.df
 
     def TFIDF(self):
         dataframe = pd.DataFrame(data=self.tf_idf)
         return dataframe
+
 
 if __name__ == "__main__":
     corpus = {"a": '«عباس عراقچی» با تاکید بر اینکه فشار حداکثری آمریکا به اوج رسیده و «شرایط بسیار سختی» وجود دارد، خروج این شرکت‌ها را «همراهی» با آمریکا توصیف کرده است. عراقچی گفته است شرکت‌هایی که در این شرایط از ایران می‌روند، «بازاری را از دست داده‌اند که به آسانی نخواهند توانست دوباره به دست بیاورند».',
