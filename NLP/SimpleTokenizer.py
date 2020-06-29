@@ -29,6 +29,10 @@ class SimpleTokenizer():
         result = result.strip()
         self.istr = result
 
+    def normalize(self, *args, **kwargs):
+        # empty
+        pass
+
     def tokenize(self, *args, **kwargs):
         self._marks_replace(**kwargs)
         result = self.istr.split(" ")
